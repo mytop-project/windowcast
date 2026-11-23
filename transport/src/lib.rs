@@ -236,7 +236,7 @@ impl Session {
     }
 
     /// A session carried by a tunnel someone else owns, such as
-    /// droidtop-agent's WireGuard tunnel (Droidtop/tracker#113): it binds
+    /// droidtop-agent's WireGuard tunnel (mytop-project/tracker#113): it binds
     /// loopback only, and its one way to the peer is `conduit`, through a
     /// [`conduit::Bridge`]. Signaling still goes over whatever byte stream
     /// the caller has (the tunnel's own channel).
@@ -516,7 +516,7 @@ impl Session {
     /// also tries the host's ports at that address: an emulator's NAT
     /// (BlueStacks' and Android's 10.0.2.2) reaches the host that way,
     /// while the host's own addresses are out of the guest's reach
-    /// (Droidtop/tracker#465).
+    /// (mytop-project/tracker#465).
     pub fn set_dialed_address(&self, ip: std::net::IpAddr) {
         *self.dialed.lock().expect("dialed") = Some(ip);
     }

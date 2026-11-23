@@ -2,7 +2,7 @@ package dev.windowcast.viewer
 
 /**
  * What starting a program on the host said ("Started notepad.exe (process 4242)"), kept in front of
- * the window-count line for [keepMs] (Droidtop/tracker#466).
+ * the window-count line for [keepMs] (mytop-project/tracker#466).
  *
  * The list is asked for again a few times after a launch (the program's window takes a while to open),
  * and each answer rewrites the status line. A note shown once and then dropped was overwritten by the

@@ -9,7 +9,7 @@ section: net
 priority: optional
 maintainer: Droidtop <noreply@github.com>
 vendor: Droidtop
-homepage: https://github.com/Droidtop/windowcast
+homepage: https://github.com/mytop-project/windowcast
 license: GPL-3.0-only
 description: |-
   Stream application windows between computers and handhelds

@@ -1,5 +1,5 @@
 //! The automatic carrier selector (docs/BACKENDS.md, "When a carrier
-//! switches"; Droidtop/tracker#457 step 3) through both ends: a text
+//! switches"; mytop-project/tracker#457 step 3) through both ends: a text
 //! window starts on RDP pictures (the default rules), switches by itself to
 //! video while it moves, and back to RDP once it is still again, each switch
 //! made without the stream stopping.

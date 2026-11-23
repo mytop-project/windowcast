@@ -5,7 +5,7 @@ import android.media.AudioRecord
 import android.util.Log
 
 /**
- * One app's sound, captured by its UID (Droidtop/tracker#615): an `AudioMix` whose rule matches
+ * One app's sound, captured by its UID (mytop-project/tracker#615): an `AudioMix` whose rule matches
  * the app's UID, looped back into an `AudioRecord`, read as stereo 16-bit at 48 kHz and handed to
  * the host, which encodes it with Opus. The mix, its rule and `AudioRecord.Builder.setAudioMix`
  * are system APIs, reached by reflection; the shell user may route audio this way (scrcpy's

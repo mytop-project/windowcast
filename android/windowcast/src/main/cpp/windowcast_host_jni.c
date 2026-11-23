@@ -1,5 +1,5 @@
 /* The JNI bridge of dev.windowcast.host.HostNative over windowcast_host.h
- * (Droidtop/tracker#615), as windowcast_jni.c is the client's. */
+ * (mytop-project/tracker#615), as windowcast_jni.c is the client's. */
 #include <jni.h>
 #include <string.h>
 #include "windowcast_host.h"

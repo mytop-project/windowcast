@@ -10,8 +10,8 @@ IronRDP is on the stack that builds beside russh. The released
 `ironrdp-connector` 0.10, which needs `sspi` 0.21, and that pins
 `ed25519-dalek = "=3.0.0-rc.1"` and other RustCrypto pre-releases exactly
 (through picky 7.0.0-rc.25 and its macOS targets). russh 0.64 and 0.65
-(the command stream, Droidtop/tracker#444; droidtop's SFTP,
-Droidtop/tracker#573) need `ed25519-dalek` 3, and Cargo keeps one version
+(the command stream, mytop-project/tracker#444; droidtop's SFTP,
+mytop-project/tracker#573) need `ed25519-dalek` 3, and Cargo keeps one version
 per compatible range, so the two cannot share a lockfile.
 
 IronRDP master already moved: `ironrdp-connector` 0.12 on `sspi` 0.23.1 and

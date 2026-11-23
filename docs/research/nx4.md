@@ -1,6 +1,6 @@
 # NoMachine NX4: a feasibility study
 
-Droidtop/tracker#442. Written 2026-10-09 from NoMachine's published
+mytop-project/tracker#442. Written 2026-10-09 from NoMachine's published
 material and from the NoMachine install on the owner's PC (NoMachine
 8.27.1, `C:\Program Files\NoMachine`): its configuration files and their
 built-in documentation, its logs, its EULA, and the readable text strings in
@@ -28,7 +28,7 @@ a local account on that server, on the owner's own machines.
   allows; see the legal section for where it stops.
 - Public material: Wikipedia's "NX technology" article, NoMachine 4's 2013
   launch announcement (as quoted by secondary sources), and the GPL nx-libs
-  sources (nxcomp and nxproxy, the NX 3 lineage, also Droidtop/tracker#439).
+  sources (nxcomp and nxproxy, the NX 3 lineage, also mytop-project/tracker#439).
   NoMachine's own knowledge base has no public protocol specification.
 
 ## What is documented or observable
@@ -175,7 +175,7 @@ not pay. windowcast's own host agents already stream windows from the same
 machines a NoMachine server would run on. The other reach-a-foreign-server
 cases are better met by open protocols:
 
-- **X2Go / nx-libs** (open NX 3 lineage, GPL; Droidtop/tracker#439) for
+- **X2Go / nx-libs** (open NX 3 lineage, GPL; mytop-project/tracker#439) for
   Linux servers that run X2Go.
 - **RDP and VNC** (windowcast's `Rdp` and `Vnc` backends, #111) for
   everything else, NoMachine-managed machines included, since Windows and

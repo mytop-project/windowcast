@@ -401,7 +401,7 @@ pub unsafe extern "C" fn windowcast_session_stop_window(
     }
 }
 
-/// Starts recording `window` into the file at `path` (Droidtop/tracker#429):
+/// Starts recording `window` into the file at `path` (mytop-project/tracker#429):
 /// its frames and sound as received, from the next keyframe, in Matroska.
 /// `width` and `height` are the window's. Returns 0, or
 /// [`WINDOWCAST_ERROR`] with the reason in `error`.

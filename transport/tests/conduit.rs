@@ -1,4 +1,4 @@
-//! A session carried by a tunnel someone else owns (Droidtop/tracker#113):
+//! A session carried by a tunnel someone else owns (mytop-project/tracker#113):
 //! the host and the client each bind loopback only and reach each other
 //! through a pair of in-memory conduits, as droidtop-agent's WireGuard
 //! tunnel will carry them. Signaling goes over an in-memory pipe, as it will

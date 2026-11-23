@@ -1,6 +1,6 @@
 # The command stream: shells, application launch and remote commands
 
-Owner (Droidtop/tracker#444): most every network thing on a computer is
+Owner (mytop-project/tracker#444): most every network thing on a computer is
 done over windowcast, so windowcast has a command stream: an interactive
 shell when the user wants one, and a background channel that is always
 available to the session, over which the client starts applications on the
@@ -116,7 +116,7 @@ reporting and text selection in the viewers.
 folders a host shares. It is off unless the host application turns it on.
 
 **The host application sets the scope; the client never widens it** (owner,
-Droidtop/tracker#613). The application calls
+mytop-project/tracker#613). The application calls
 `HostControl::set_file_shares(Shares)`, adding each folder with a name, its
 path and whether it is writable. A host that never does shares nothing and
 answers a `Files` open with `Refused`. A client names a share and a path

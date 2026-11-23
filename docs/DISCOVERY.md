@@ -1,6 +1,6 @@
 # Finding a host on the local network, and waking it
 
-Droidtop/tracker#113. Away from the LAN, hosts are found through the rendezvous directory and hole
+mytop-project/tracker#113. Away from the LAN, hosts are found through the rendezvous directory and hole
 punching (`windowcast-rendezvous`). On the LAN, until now, a client needed the host's address typed in.
 
 ## Local discovery
@@ -50,4 +50,4 @@ its addresses in its own reply (`macs::local()` is there for it to call).
 - A deployable directory and TURN relay (the code is there; running them for people is an operations
   decision for the owner).
 - A client offering "wake" for a host it paired with: it needs the host's address from the agent's pairing reply
-  (droidtop-agent, Droidtop/tracker#113); windowcast's own wire does not carry it.
+  (droidtop-agent, mytop-project/tracker#113); windowcast's own wire does not carry it.

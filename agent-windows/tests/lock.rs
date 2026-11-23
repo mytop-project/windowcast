@@ -1,5 +1,5 @@
 //! A locked PC keeps streaming its windows (docs/BACKENDS.md, "A locked
-//! host"; Droidtop/tracker#467): a window that repaints all the time is
+//! host"; mytop-project/tracker#467): a window that repaints all the time is
 //! captured, the workstation is locked, and the test checks that its own
 //! capture keeps delivering changing pictures (one started while locked
 //! too), that the agent opens streams of it on the native and desktop

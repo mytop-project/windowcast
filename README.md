@@ -6,11 +6,11 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/Droidtop/windowcast/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/Droidtop/windowcast?style=flat-square"></a>
-  <a href="https://github.com/Droidtop/windowcast/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/Droidtop/windowcast/ci.yml?branch=main&label=ci&style=flat-square"></a>
+  <a href="https://github.com/mytop-project/windowcast/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/mytop-project/windowcast?style=flat-square"></a>
+  <a href="https://github.com/mytop-project/windowcast/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/mytop-project/windowcast/ci.yml?branch=main&label=ci&style=flat-square"></a>
   <img alt="Rust" src="https://img.shields.io/badge/Rust-library-b7410e?style=flat-square&logo=rust">
   <img alt="Hosts: Windows and Linux" src="https://img.shields.io/badge/hosts-Windows%20%C2%B7%20Linux-2f7bf5?style=flat-square">
-  <a href="LICENSE"><img alt="License: GPL-3.0" src="https://img.shields.io/github/license/Droidtop/windowcast?style=flat-square"></a>
+  <a href="LICENSE"><img alt="License: GPL-3.0" src="https://img.shields.io/github/license/mytop-project/windowcast?style=flat-square"></a>
   <img alt="Status: early" src="https://img.shields.io/badge/status-early-d69e2e?style=flat-square">
 </p>
 
@@ -56,12 +56,12 @@ The full crate-by-crate list is in [docs/OVERVIEW.md](docs/OVERVIEW.md), and the
 
 ## Install
 
-Every [release](https://github.com/Droidtop/windowcast/releases/latest) lists its files.
+Every [release](https://github.com/mytop-project/windowcast/releases/latest) lists its files.
 
 **Linux (x86_64 or aarch64)**, for you only and without root:
 
 ```
-curl -fsSL https://github.com/Droidtop/windowcast/releases/latest/download/install.sh | sh
+curl -fsSL https://github.com/mytop-project/windowcast/releases/latest/download/install.sh | sh
 ```
 
 Add `-s -- --autostart` after `sh` to start the host agent when you sign in. The script checks the download against `SHA256SUMS-linux`, puts the programs in `~/.local/bin` and lists everything it creates in `~/.local/share/windowcast/install-manifest`. `~/.local/share/windowcast/uninstall.sh` removes exactly that list.

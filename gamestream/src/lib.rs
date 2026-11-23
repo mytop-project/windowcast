@@ -1,5 +1,5 @@
 //! GameStream, windowcast's own implementation of the protocol Sunshine,
-//! Apollo and Moonlight speak (Droidtop/tracker#110): a client for
+//! Apollo and Moonlight speak (mytop-project/tracker#110): a client for
 //! Sunshine and Apollo hosts, and a host face that stock Moonlight can
 //! pair with. Written from the reference sources (moonlight-qt,
 //! moonlight-common-c, Sunshine), not guessed at.

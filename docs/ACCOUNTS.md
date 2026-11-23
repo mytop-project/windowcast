@@ -153,7 +153,7 @@ Each host has a policy: an ordered list of rules, first match wins.
 - `windows`: globs on a window's app id or title; absent means all. A
   window outside them is not listed to the session and cannot be
   streamed or given input.
-- `input`, `commands` (the command stream of Droidtop/tracker#444:
+- `input`, `commands` (the command stream of mytop-project/tracker#444:
   shells, launching apps): what the session may do; absent means the
   host's own settings decide.
 - `allow: false` refuses the connection.
@@ -164,7 +164,7 @@ refused.
 
 ## SSH and the command stream
 
-The command stream (Droidtop/tracker#444, docs/COMMAND-STREAM.md) is
+The command stream (mytop-project/tracker#444, docs/COMMAND-STREAM.md) is
 authorised by the account layer through a narrow interface, without the
 SSH crate depending on how accounts are checked:
 

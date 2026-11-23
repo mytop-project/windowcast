@@ -18,7 +18,7 @@ import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicLong
 
 /**
- * windowcast's Android host (Droidtop/tracker#615): each app on a virtual display of its own,
+ * windowcast's Android host (mytop-project/tracker#615): each app on a virtual display of its own,
  * drawn straight into a MediaCodec encoder's input surface, served by windowcast's host
  * (agent-android) as one window per app.
  *

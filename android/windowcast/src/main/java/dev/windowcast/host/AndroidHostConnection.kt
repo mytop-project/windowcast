@@ -8,7 +8,7 @@ import rikka.shizuku.Shizuku
 
 /**
  * Starts windowcast's Android host as the shell user through Shizuku or Sui and hands back its
- * binder (Droidtop/tracker#615). The one call an embedding app (droidtop) makes; everything
+ * binder (mytop-project/tracker#615). The one call an embedding app (droidtop) makes; everything
  * after it is [IAndroidHost]: start, open an app as a window, close it.
  *
  * Shizuku's client library is the embedding app's (`dev.rikka.shizuku:api`, which droidtop

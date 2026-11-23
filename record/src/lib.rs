@@ -1,4 +1,4 @@
-//! Local recording (Droidtop/tracker#429): a watched window's video and its
+//! Local recording (mytop-project/tracker#429): a watched window's video and its
 //! sound, written to a Matroska file exactly as they were received. Nothing
 //! is decoded or encoded again, so recording costs a file write, not a
 //! second encoder, which matters on a handheld.

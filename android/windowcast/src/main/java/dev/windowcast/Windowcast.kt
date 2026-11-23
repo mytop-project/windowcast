@@ -102,7 +102,7 @@ sealed interface Event {
 
     /**
      * What a window's stream is sent at now and the network the host sees (adaptive quality,
-     * Droidtop/tracker#114): on every change and every few seconds.
+     * mytop-project/tracker#114): on every change and every few seconds.
      */
     data class StreamQuality(val window: Long, val quality: Quality) : Event
 
@@ -368,7 +368,7 @@ class WindowcastSession internal constructor(handle: Long) : Closeable, HostedSe
     }
 
     /**
-     * Starts recording [window] into [file] (Droidtop/tracker#429): its frames and sound as
+     * Starts recording [window] into [file] (mytop-project/tracker#429): its frames and sound as
      * received, with no decoding or encoding, in Matroska, from the next keyframe. [width] and
      * [height] are the window's, as listed. Only H.264 windows can be recorded yet. Blocks on the
      * file: never on the main thread.

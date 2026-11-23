@@ -3,7 +3,7 @@ package dev.windowcast
 /**
  * The state of changing a watched window from one carrier to another (docs/BACKENDS.md, "One window,
  * any carrier"): the switch under way, and the switches a host has refused, so a client stops offering
- * one the host has already said it cannot serve (Droidtop/tracker#471).
+ * one the host has already said it cannot serve (mytop-project/tracker#471).
  *
  * The rules are here so every client of the library switches the same way; what is drawn is the
  * client's. [R] is whatever the client keeps for the new carrier while it waits for its first picture

@@ -93,7 +93,7 @@ class MainActivity : Activity() {
      */
     private lateinit var spare: SurfaceView
 
-    /** The state of a carrier switch and the switches this host refused (Droidtop/tracker#471), kept by the library. */
+    /** The state of a carrier switch and the switches this host refused (mytop-project/tracker#471), kept by the library. */
     private val switcher = CarrierSwitcher<WindowRenderer> { session?.hostId }
 
     private val switching get() = switcher.pending
@@ -460,7 +460,7 @@ class MainActivity : Activity() {
     /**
      * The one way a session starts, for a PIN connect and an account sign-in alike: the old
      * reader is stopped and joined before the old session closes (it may be inside nextEvent
-     * on it, Droidtop/tracker#447), then [open] makes the new session and the text for its
+     * on it, mytop-project/tracker#447), then [open] makes the new session and the text for its
      * status line.
      */
     private fun startSession(
@@ -660,7 +660,7 @@ class MainActivity : Activity() {
 
     /**
      * Says [text] on the status line, and as a toast while a stream covers that line, so a
-     * refused switch or popup is not silent while watching (Droidtop/tracker#471).
+     * refused switch or popup is not silent while watching (mytop-project/tracker#471).
      */
     private fun tell(text: String) {
         status.text = text

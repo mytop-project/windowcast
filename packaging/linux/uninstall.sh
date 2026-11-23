@@ -10,7 +10,7 @@
 #
 # Works from anywhere: the copy in ~/.local/share/windowcast/, an
 # unpacked tarball, or downloaded alone:
-#   curl -fsSL https://github.com/Droidtop/windowcast/releases/latest/download/uninstall.sh | sh
+#   curl -fsSL https://github.com/mytop-project/windowcast/releases/latest/download/uninstall.sh | sh
 set -eu
 
 # ---- this project ---------------------------------------------------------

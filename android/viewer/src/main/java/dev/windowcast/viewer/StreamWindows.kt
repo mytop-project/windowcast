@@ -26,7 +26,7 @@ import java.util.concurrent.ExecutorService
 
 /**
  * The windows the viewer shows in floating windows of their own, beside the one that fills the
- * screen (Droidtop/tracker#760): a watched window's popups (its dialogs, menus and tooltips, placed
+ * screen (mytop-project/tracker#760): a watched window's popups (its dialogs, menus and tooltips, placed
  * against their owner) and the other windows the person chose to watch too, each with its own
  * surface, renderer and, for watched windows, sound. [MainActivity] owns the session and the
  * full-screen window and asks this for the rest. Main thread, except what goes to [worker].

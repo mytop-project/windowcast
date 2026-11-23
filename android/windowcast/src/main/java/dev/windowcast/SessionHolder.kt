@@ -14,7 +14,7 @@ interface HostedSession : EventSource, Closeable {
 /**
  * The one current session of a client, and the [EventPump] following it. Starting a session is the
  * same sequence for the viewer and for droidtop: stop the old reader and wait for it (it may be inside
- * `nextEvent` on the session about to close, Droidtop/tracker#447), close the old session, open the
+ * `nextEvent` on the session about to close, mytop-project/tracker#447), close the old session, open the
  * new one, follow it, ask for its windows. Every call but [session] blocks, so none may run on a UI
  * thread.
  */

@@ -3,7 +3,7 @@
 The viewer (`dev.windowcast.viewer`) is windowcast's Android client. Besides
 its own form (an address, and a PIN the first time), another app can ask it to
 open a host's stream: droidtop does, after it asks a computer to start a game
-with `stream: windowcast` (Droidtop/tracker#552).
+with `stream: windowcast` (mytop-project/tracker#552).
 
 ## The contract
 
@@ -53,7 +53,7 @@ in `ConnectRequestTest.kt` (CI's `:windowcast:testDebugUnitTest`).
 
 ## Several windows at once, and typing
 
-The owner's rule (Droidtop/tracker#118): "since windowcast is arbitrary window casting,
+The owner's rule (mytop-project/tracker#118): "since windowcast is arbitrary window casting,
 multiple streams is intended behavior. A window stream should only close when it is
 instructed to, or when the session closes."
 
@@ -93,14 +93,14 @@ APKs are published as signed releases, by `viewer-release.yml`, with the
 release key. The key is derived from Droidtop Core; its certificate's SHA-256
 is `24cfa96c7426467cf1ca4228916acf9cd15c30e87c0eca92e8d1f102d51b3323`, and the
 public certificate is `coordination/signing/windowcast/viewer-apk.pem` in
-Droidtop/tracker. Check an APK against that fingerprint before trusting a
+mytop-project/tracker. Check an APK against that fingerprint before trusting a
 copy that did not come from a release.
 
 ## Stream statistics
 
 While a window is watched, the action-bar title reads `<window>: <frames or pictures>` and, once the
 host reports it, ` | held to 4.0 Mbit/s, 1280x720 at 60 fps, sending 3.2 Mbit/s; loss 0.4%, round trip
-12 ms` (Droidtop/tracker#114). The second part is adaptive quality as the host sees it: what the
+12 ms` (mytop-project/tracker#114). The second part is adaptive quality as the host sees it: what the
 encoder is held to (`as set` while only the settings hold it), the size and rate, what actually went
 out, the packets the client lost and the round trip. The host reports it on every change and every few
 seconds (`stream_quality`), the library delivers it as `Event.StreamQuality` (`SessionListener.

@@ -1,6 +1,6 @@
 # Parsec's protocol: a feasibility study
 
-Droidtop/tracker#441. Written 2026-10-09 from Parsec's published material
+mytop-project/tracker#441. Written 2026-10-09 from Parsec's published material
 and from what the official Parsec app logs on the owner's own PC. Nothing
 here comes from disassembling Parsec, and nothing was sent to Parsec's
 servers.

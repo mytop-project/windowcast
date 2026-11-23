@@ -343,7 +343,7 @@ fn configure(api: &ICodecAPI, fps: u32) -> Vec<&'static str> {
 }
 
 /// Hands each event an asynchronous MFT raises to the encoding thread
-/// (Droidtop/tracker#760): Media Foundation calls [`IMFAsyncCallback::Invoke`]
+/// (mytop-project/tracker#760): Media Foundation calls [`IMFAsyncCallback::Invoke`]
 /// on its own work queue when the event `BeginGetEvent` asked for is there,
 /// and the thread waits on the channel with a timeout instead of polling
 /// `GetEvent` with `MF_EVENT_FLAG_NO_WAIT` every millisecond.

@@ -1,5 +1,5 @@
 //! The automatic carrier selector (docs/BACKENDS.md, "When a carrier
-//! switches, and why it does not flap"; Droidtop/tracker#457 step 3).
+//! switches, and why it does not flap"; mytop-project/tracker#457 step 3).
 //!
 //! For each window this client shows, it scores the carriers it could use
 //! from what it sees: how much of the time the window changes (pictures or

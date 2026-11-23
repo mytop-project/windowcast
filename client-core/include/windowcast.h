@@ -73,7 +73,7 @@ int64_t windowcast_session_start_window(const WindowcastSession *session, uint64
                                         const uint32_t *codecs, size_t count);
 int64_t windowcast_session_stop_window(const WindowcastSession *session, uint64_t window);
 
-/* Local recording (Droidtop/tracker#429): a shown window's frames and sound,
+/* Local recording (mytop-project/tracker#429): a shown window's frames and sound,
  * written as received (no decode or encode) to a Matroska file at path, from
  * the next keyframe. width and height are the window's. 0, or
  * WINDOWCAST_ERROR with the reason in error. Only H.264 can be recorded yet;

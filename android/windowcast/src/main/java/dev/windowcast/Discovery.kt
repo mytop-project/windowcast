@@ -17,7 +17,7 @@ data class DiscoveredHost(
     val address: String,
 )
 
-/** Finding hosts on the local network and waking one that sleeps (Droidtop/tracker#113). */
+/** Finding hosts on the local network and waking one that sleeps (mytop-project/tracker#113). */
 object HostDiscovery {
     /**
      * Listens for [windowMs] (at most 30 s) and lists the hosts that announced themselves; hosts

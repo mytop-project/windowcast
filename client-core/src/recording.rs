@@ -1,4 +1,4 @@
-//! Local recording of a shown window (Droidtop/tracker#429): what
+//! Local recording of a shown window (mytop-project/tracker#429): what
 //! [`ClientSession::next_frame`](crate::ClientSession::next_frame) and
 //! [`ClientSession::next_audio`](crate::ClientSession::next_audio) hand out
 //! is also written, as received, by `windowcast-record` on a thread of its

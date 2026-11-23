@@ -55,7 +55,7 @@ pub struct Decision {
     pub commands: Option<bool>,
     /// The host application's own limit for this one device, on top of
     /// the policy's: window globs it may see, empty for no limit
-    /// ([`Decision::limited_to`], Droidtop/tracker#116). A window must
+    /// ([`Decision::limited_to`], mytop-project/tracker#116). A window must
     /// pass both.
     pub device_windows: Vec<String>,
 }

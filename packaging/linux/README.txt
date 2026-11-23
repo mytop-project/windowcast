@@ -40,4 +40,4 @@ session (sway, or a compositor with the same capture protocols); the window
 programs run on Wayland or X11. Its systemd user unit is
 windowcast-agent.service.
 
-https://github.com/Droidtop/windowcast
+https://github.com/mytop-project/windowcast

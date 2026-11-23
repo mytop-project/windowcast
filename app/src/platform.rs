@@ -63,7 +63,7 @@ mod imp {
         // it in OLE's single-threaded apartment: claim it first, so nothing
         // the host starts on this thread can put it in the multithreaded
         // one (OleInitialize then failed with RPC_E_CHANGED_MODE and the
-        // host window could not open, Droidtop/tracker#464). winit's own
+        // host window could not open, mytop-project/tracker#464). winit's own
         // OleInitialize finds it done.
         unsafe {
             let _ = windows::Win32::System::Ole::OleInitialize(None);

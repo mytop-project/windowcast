@@ -1,5 +1,5 @@
 //! Finding a windowcast host on the local network, and waking one that sleeps
-//! (Droidtop/tracker#113).
+//! (mytop-project/tracker#113).
 //!
 //! **Local discovery.** A host announces itself with a small UDP broadcast
 //! beacon every few seconds ([`Beacon`], [`announce`]); a client listens for

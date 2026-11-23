@@ -3,7 +3,7 @@
 //! public key, so any sshd that trusts the CA (`TrustedUserCAKeys`) admits
 //! that user without a password of its own. This is how an OIDC, LDAP or
 //! Kerberos sign-in reaches plain SSH servers (the command stream,
-//! Droidtop/tracker#444).
+//! mytop-project/tracker#444).
 //!
 //! The client's half: its own SSH key ([`UserKey`]), kept beside its
 //! device identity, is the key a host certifies; the certificate is

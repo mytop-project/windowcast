@@ -1,6 +1,6 @@
 # The Android library: one set of calls for every client
 
-Owner direction (2026-10-29, Droidtop/tracker#428 and #115): remote streaming stays in the windowcast
+Owner direction (2026-10-29, mytop-project/tracker#428 and #115): remote streaming stays in the windowcast
 library. droidtop embeds `windowcast-android-<version>.aar` and uses it for every remote stream; it
 writes no streaming or protocol code of its own. The viewer app is the **reference implementation**
 of a client, not droidtop's client: droidtop is its own client, through the library. So the viewer and
@@ -22,14 +22,14 @@ belongs in the library, not in `MainActivity`.
 | Sign in with an account | `signInOptions` → `SignInPlan.of(options)` (confirmation, methods, words) → `connectAccount`; `SignInAttempts` for waiting sign-ins |
 | Open a host from another app | `ConnectRequest` (parses the link / intent contract of docs/ANDROID-VIEWER.md) |
 | Stream a window | `startWindow`, `switchWindow`, `stopWindow`; `WindowDecoder`, `WindowPictures` render |
-| Record a window (Droidtop/tracker#429) | `startRecording(window, file, width, height)`, `stopRecording(window)`: its frames and sound as received, no decode or encode, Matroska; H.264 only for now. Off the main thread |
+| Record a window (mytop-project/tracker#429) | `startRecording(window, file, width, height)`, `stopRecording(window)`: its frames and sound as received, no decode or encode, Matroska; H.264 only for now. Off the main thread |
 | Fit a picture, size and place a floating window or popup | `Letterbox.fit`, `WindowLayout.floatingSize`, `WindowLayout.againstOwner` (plain Kotlin; the client draws the result) |
 | Show a started stream | `WindowRenderers.create(session, event, window, holder)`: RDP pictures or decoded video by the stream's backend, one progress shape |
 | Touch and keys as input | `InputAdapter.touches(window, view, event)` and `InputAdapter.key(event)` (the rules are plain Kotlin and tested) |
 | Input, clipboard, audio, gamepads, terminal | `send`, `setClipboard`, `AudioPlayer`, `Microphone`, `Gamepads`, `openTerminal` |
 
 Discovery of hosts (finding a computer to connect to) is not here yet: droidtop's paired computers
-already know their addresses, and the directory and LAN discovery are Droidtop/tracker#113.
+already know their addresses, and the directory and LAN discovery are mytop-project/tracker#113.
 
 ## What is still in the viewer and must move
 

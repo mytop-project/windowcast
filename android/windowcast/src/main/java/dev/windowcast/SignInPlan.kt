@@ -74,7 +74,7 @@ class SignInPlan private constructor(
  * Which browser or device-code sign-in is still wanted. A sign-in waits on a provider for minutes; the
  * person may cancel, or start another, meanwhile, and when the first one finally answers its token must
  * be dropped, not used. [begin] numbers an attempt, [cancel] makes every earlier number stale, and the
- * attempt that answers asks [isCurrent] before using what it got (Droidtop/tracker#454).
+ * attempt that answers asks [isCurrent] before using what it got (mytop-project/tracker#454).
  *
  * Thread-safe: attempts answer on threads of their own.
  */

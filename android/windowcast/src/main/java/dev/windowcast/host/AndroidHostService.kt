@@ -6,7 +6,7 @@ import java.io.File
 import kotlin.system.exitProcess
 
 /**
- * windowcast's Android host as a Shizuku (or Sui) user service (Droidtop/tracker#615): Shizuku
+ * windowcast's Android host as a Shizuku (or Sui) user service (mytop-project/tracker#615): Shizuku
  * starts this class in a process of the shell user, which may make displays other apps launch
  * onto and inject input into them. The embedding app reaches it through [AndroidHostConnection].
  *

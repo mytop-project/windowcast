@@ -23,7 +23,7 @@ dynamic channels), and windowcast keeps its own window handling on top:
 which window an RDP connection shows, RemoteApp, input mapping, the
 streaming into windowcast's sessions and the backend seam.
 
-## The Android host (Droidtop/tracker#615)
+## The Android host (mytop-project/tracker#615)
 
 Android has no windows another app may capture, so the Android host makes
 them: each app runs on a virtual display of its own, created as the shell
@@ -114,7 +114,7 @@ Only an RDP server for third-party clients (compatibility mode,
 
 ## RemoteApp: programs and windows over RDP (Windows hosts)
 
-Decided 2026-10-10 (Droidtop/tracker#111), and changed the same day at
+Decided 2026-10-10 (mytop-project/tracker#111), and changed the same day at
 the owner's word: "I don't even really necessarily want a different
 session on Windows, since that's often locked behind licensing". A
 RemoteApp of Windows' own Remote Desktop always runs in a session of its
@@ -241,7 +241,7 @@ Windows 10 and 11.
   RemoteApp (an allow-list entry, or the allow list switched off); the
   host's settings say what is missing.
 
-## One window, any carrier: live switching (design, Droidtop/tracker#457)
+## One window, any carrier: live switching (design, mytop-project/tracker#457)
 
 Decided 2026-10-10 by the owner: "That design is wrong. We want the same
 behavior for all protocols. That's kinda the point, seamless switching
@@ -427,7 +427,7 @@ selector is the next step.
   Built (protocol 15): `RemoteApps::launch` runs it on the host, and
   `WithRemoteApps` lists its windows and carries them.
 
-## A locked host (Droidtop/tracker#467)
+## A locked host (mytop-project/tracker#467)
 
 Decided by the owner, 2026-10-10: "A locked host should still allow
 streaming. Otherwise, it's useless for remote access", and "Windowcast

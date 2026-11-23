@@ -13,13 +13,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - IronRDP comes from its repository at master (`f96f664abf0b`), on `sspi` 0.23.1 and `winscard` 0.4.1 as published, instead
   of patched copies of `ironrdp-connector` 0.10, `sspi` 0.21.3 and `winscard` 0.3.4 under `vendor/`, which are gone.
   sspi 0.21.3 pinned `ed25519-dalek = "=3.0.0-rc.1"`, and a `[patch]` does not reach programs that depend on
-  windowcast, so droidtop-agent and droidtop could not also take russh 0.65 for SFTP (Droidtop/tracker#573). The RDP
+  windowcast, so droidtop-agent and droidtop could not also take russh 0.65 for SFTP (mytop-project/tracker#573). The RDP
   host and client are moved to that IronRDP (mouse buttons carry their position, the display trait takes a context,
   RAIL capability sets are typed, the connector says if the server redirects); RDP itself is unchanged.
 
 ### Added
 - `serve_over` (host) and `WindowcastClient::connect_over` (client): one session over a signaling stream and a
-  conduit another program carries (Droidtop/tracker#113), as droidtop-agent's WireGuard tunnel carries them (its side
+  conduit another program carries (mytop-project/tracker#113), as droidtop-agent's WireGuard tunnel carries them (its side
   link and its datagrams). Only a host or client already trusted gets in; there is no PIN pairing over it.
 
 ## [0.38.0] - 2026-11-05
@@ -27,33 +27,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - GameStream's control thread waits on its socket instead of waking every millisecond: traffic and a queued
   message (a loopback datagram from the sender) wake it at once, and ENet's timers get a look every 10 ms at most
-  (Droidtop/tracker#760).
+  (mytop-project/tracker#760).
 
 ### Added
-- An Android host (Droidtop/tracker#615): `dev.windowcast.host.AndroidHost` runs each app on a virtual display of
+- An Android host (mytop-project/tracker#615): `dev.windowcast.host.AndroidHost` runs each app on a virtual display of
   its own, encoded by MediaCodec straight from the display's surface, and `windowcast-agent-android` serves them
   as one window per app. It runs as the shell user, through Shizuku or Sui. Input, sound and the in-container
   client come next.
 
 ### Added
-- The reference app's client role shows streams on Linux (Droidtop/tracker#615): each streamed window opens as a
+- The reference app's client role shows streams on Linux (mytop-project/tracker#615): each streamed window opens as a
   Wayland window of its own (xdg-shell), H.264 decoded by OpenH264 into `wl_shm` buffers, with pointer, wheel and
   keys going to the host while input is on. Before, Linux said "this platform has no native stream window yet".
   It is the client inside droidtop's Linux container for the Android host.
 
 ### Added
 - `HostControl::limit_device`: a host application can limit one paired device to the windows a few globs match (app
-  id or title), on top of the host's policy (Droidtop/tracker#116). droidtop-agent uses it so a handheld that
+  id or title), on top of the host's policy (mytop-project/tracker#116). droidtop-agent uses it so a handheld that
   started a game sees only that game's windows. It is the policy's own window filter (`Decision::limited_to`),
   not a second one.
 
 ### Added
 - `Session::over_conduit`: a session carried by a tunnel another program owns, such as droidtop-agent's WireGuard
-  tunnel (Droidtop/tracker#113). The session binds loopback only. A bridge socket stands in for the peer, every
+  tunnel (mytop-project/tracker#113). The session binds loopback only. A bridge socket stands in for the peer, every
   remote description names it as the peer's one candidate, and the datagrams go through the `conduit::Conduit`
   queues. ICE, DTLS, the control channel and the media are unchanged. `Session::conduit_counts` says how many
   datagrams went each way.
-- `windowcast-record`: local recording (Droidtop/tracker#429). `Recorder` writes a watched window's H.264 frames and
+- `windowcast-record`: local recording (mytop-project/tracker#429). `Recorder` writes a watched window's H.264 frames and
   its Opus sound into a Matroska file exactly as they arrived, with no decoding or encoding. It is written as it
   goes, so a recording that is cut short still plays. Each stream is placed by the wall clock at its first packet,
   then by its own RTP clock. H.265 and AV1 are refused with a reason for now.
@@ -62,18 +62,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `WindowcastSession.startRecording` and `stopRecording`. What the session hands out is also written on a thread of
   its own, so the decode thread never waits on the file, and a keyframe is asked for so the file starts at once.
 - `windowcast_discovery::macs::local()`: this computer's hardware addresses for Wake-on-LAN (Linux sysfs, Windows
-  `getmac`), shown in the reference app's host window (Droidtop/tracker#113). Not sent over the wire.
+  `getmac`), shown in the reference app's host window (mytop-project/tracker#113). Not sent over the wire.
 
 ## [0.37.0] - 2026-10-30
 
 ### Added
 - Android library: `WindowLayout` (the size of a floating window on a screen, and where a popup sits against
   its owner) and `Letterbox` (fitting a picture without changing its shape) are in the library, so
-  droidtop lays windows out the way the viewer does (Droidtop/tracker#428).
+  droidtop lays windows out the way the viewer does (mytop-project/tracker#428).
 - Android library: `WindowRenderers` (which renderer shows a started stream, and its progress) and
   `InputAdapter` (touches and keys as the host's input) are in the library, so droidtop shows a stream and
   sends input the way the viewer does; the viewer's four renderer choices and its touch and key code now
-  call them (Droidtop/tracker#428).
+  call them (mytop-project/tracker#428).
 
 ## [0.36.0] - 2026-10-30
 
@@ -81,8 +81,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Android library: `SessionHolder` is the one way a client starts, replaces and ends its session
   (stop and join the old reader, close the old session, open the new one, follow it, ask for its
   windows), with `adopt`/`release` for an activity's recreation. The viewer uses it, so droidtop can make
-  the same calls (Droidtop/tracker#428).
-- Local discovery and Wake-on-LAN (Droidtop/tracker#113, docs/DISCOVERY.md): the `windowcast-discovery`
+  the same calls (mytop-project/tracker#428).
+- Local discovery and Wake-on-LAN (mytop-project/tracker#113, docs/DISCOVERY.md): the `windowcast-discovery`
   crate; a host broadcasts a small beacon (name, device id, port) every 3 s when its application
   turns it on (`HostControl::set_announce`; setting "Announce this computer on the local network" in
   the reference app, off by default); `discover_hosts` lists the hosts heard and `wake_host` sends the
@@ -90,17 +90,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `windowcast_wake_host`) and the Android library (`HostDiscovery.find`, `HostDiscovery.wake`) expose both.
 - Android library: `Event.StreamQuality` and `Quality` (adaptive quality as the host sees it), which
   the viewer shows beside the frame count in its title while a window is watched
-  (Droidtop/tracker#114; docs/ANDROID-VIEWER.md, "Stream statistics").
+  (mytop-project/tracker#114; docs/ANDROID-VIEWER.md, "Stream statistics").
 - Android library: `SignInPlan` and `SignInAttempts`, the account sign-in rules (confirm an untrusted host
   by fingerprint, the methods to offer and the words, ignoring a cancelled sign-in's late answer),
-  moved out of the viewer (Droidtop/tracker#428, #115).
+  moved out of the viewer (mytop-project/tracker#428, #115).
 - Android library: `EventPump` and `SessionListener` (one way to follow a session's events),
   `WantedWindow` (waiting for a window asked for by title), and `ConnectRequest` and `WatchSet`,
-  moved out of the viewer, so the viewer and droidtop make the same calls (Droidtop/tracker#428,
+  moved out of the viewer, so the viewer and droidtop make the same calls (mytop-project/tracker#428,
   #115; docs/ANDROID-LIBRARY.md). The viewer's behaviour is unchanged.
 - Android library: `CarrierSwitcher`, the carrier-switch state and the memory of switches a host
-  refused (Droidtop/tracker#471), moved out of the viewer; the viewer's behaviour is unchanged.
-- File transfer on shared folders (Droidtop/tracker#613, docs/COMMAND-STREAM.md, "Files"):
+  refused (mytop-project/tracker#471), moved out of the viewer; the viewer's behaviour is unchanged.
+- File transfer on shared folders (mytop-project/tracker#613, docs/COMMAND-STREAM.md, "Files"):
   a new `Files` channel kind. The host application sets what is shared
   (`HostControl::set_file_shares`; nothing is shared by default) and whether each share is
   writable; a client can only name a share and a path inside it. Paths are refused by spelling
@@ -108,19 +108,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   links followed. Listing, stat, download and upload with resume; uploads are written under a
   temporary name and renamed when complete. `ClientSession::open_files` on the client. Each kind
   is authorized on its own.
-- Folder watch (save sync) for the Files channels (Droidtop/tracker#613): `ChannelKind::Watch`.
+- Folder watch (save sync) for the Files channels (mytop-project/tracker#613): `ChannelKind::Watch`.
   A client asks the host to watch a folder of a share (optionally by file-name pattern) and
   `ClientSession::watch_folder` files each file into a folder it chose once the file has stopped
   changing on the host, so a half-written save is never sent. The client checks every path the
   host names.
-- Chat and notices (Droidtop/tracker#613): `ChannelKind::Chat`, short text both ways. Off unless
+- Chat and notices (mytop-project/tracker#613): `ChannelKind::Chat`, short text both ways. Off unless
   the host application sets a `ChatHub` (`HostControl::set_chat`); the application hears clients
   through its `ChatSink` and speaks with `ChatHub::notice` and `say_to`. Messages are size
   limited, free of control characters, rate limited, and not stored; the client drops a host
   message that fails the same checks. `ClientSession::open_chat` on the client.
 - `windowcast-bud`, the packet layer of `Direct`, windowcast's own low-latency datagram
   transport built from the public design of Parsec's BUD between our own peers
-  (Droidtop/tracker#441, docs/research/parsec.md): a 24-byte header, ChaCha20-Poly1305
+  (mytop-project/tracker#441, docs/research/parsec.md): a 24-byte header, ChaCha20-Poly1305
   datagrams with the header as associated data and the packet number as the nonce, a
   1024-packet replay window, a Noise IK handshake between pinned identities, and
   cutting a frame into datagrams and reassembling it (bounded in-flight frames and
@@ -147,7 +147,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Releases carry the Android library: the "Viewer release" workflow also attaches
   `windowcast-android-<version>.aar` (both ABIs inside) with its own `SHA256SUMS-android-library`, so
-  droidtop can pin and embed it (Droidtop/tracker#428).
+  droidtop can pin and embed it (mytop-project/tracker#428).
 
 ### Changed
 - The Reed-Solomon code moved out of `windowcast-gamestream` into a new
@@ -178,7 +178,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   turning any exception into a status line; the timed window-list refreshes after a launch are gone
   (the host already pushes the list when it changes).
 - The viewer's "Started <program>" line is no longer wiped by the window list arriving a moment
-  later; it stays in front of the window count (Droidtop/tracker#466).
+  later; it stays in front of the window count (mytop-project/tracker#466).
 - Viewer: a picture keeps its shape. It used to be stretched to fill the screen whatever the
   window's proportions were, so a 4:3 window on a 16:9 handheld came out wide. It is now the
   largest picture of the window's own shape that fits, centred, with black bars, and it
@@ -193,18 +193,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   the window, or the session ends. Asking for a window already showing does nothing (the
   owner's rule, docs/ANDROID-VIEWER.md, "Several windows at once").
 - Viewer: once a host has refused to switch a window's carrier, the options menu stops
-  offering that switch for that window on that host (Droidtop/tracker#471).
+  offering that switch for that window on that host (mytop-project/tracker#471).
 
 ## [0.35.0] - 2026-10-16
 
 ### Added
-- The secure-screen helper (Droidtop/tracker#467): an optional, separately installed Windows helper that runs as a scheduled SYSTEM task, only after the person approves it, and shows and controls the Winlogon desktop (UAC, lock and sign-in) for windowcast's own host. It does three things only: capture the secure desktop, enter text, mouse and a few keys (Enter, Backspace, Tab, Esc, arrows), and report whether the secure desktop is up. Managed with `windowcast-app secure-screen install|enable|disable|uninstall|status`; see docs/BACKENDS.md "Secure screen" and docs/SECURITY.md.
-- The Android viewer opens a paired host from another app (docs/ANDROID-VIEWER.md; Droidtop/tracker#552): `windowcast://connect?host=<device id>&address=<HOST:PORT>[&window=<title>]`, or the action `dev.windowcast.viewer.action.CONNECT` with the same values as extras. It never pairs: it resumes only with a host in its trust store, and only with the host the device id names; it then watches the first window whose title contains `window`, waiting up to 90 s for it to open.
+- The secure-screen helper (mytop-project/tracker#467): an optional, separately installed Windows helper that runs as a scheduled SYSTEM task, only after the person approves it, and shows and controls the Winlogon desktop (UAC, lock and sign-in) for windowcast's own host. It does three things only: capture the secure desktop, enter text, mouse and a few keys (Enter, Backspace, Tab, Esc, arrows), and report whether the secure desktop is up. Managed with `windowcast-app secure-screen install|enable|disable|uninstall|status`; see docs/BACKENDS.md "Secure screen" and docs/SECURITY.md.
+- The Android viewer opens a paired host from another app (docs/ANDROID-VIEWER.md; mytop-project/tracker#552): `windowcast://connect?host=<device id>&address=<HOST:PORT>[&window=<title>]`, or the action `dev.windowcast.viewer.action.CONNECT` with the same values as extras. It never pairs: it resumes only with a host in its trust store, and only with the host the device id names; it then watches the first window whose title contains `window`, waiting up to 90 s for it to open.
 - `windowcast-viewer-<version>.apk` on each release, signed with the release key (`.github/workflows/viewer-release.yml`, run when a release is published).
-- Compatibility mode (docs/BACKENDS.md, "Third-party clients and RemoteApp"; Droidtop/tracker#457, protocol 16): a window a client streams, or one the host's owner picks, is also offered to third-party clients: an RDP desktop of the window (mstsc, FreeRDP) with a login made for it, a GameStream app for Moonlight (pairing by the PIN typed on the host), and a VNC server with a password made for it. `windowcast_host::compat` (`Compatibility`, `CompatProvider`), `CompatibilityRequest` and `Compatibility`; client-core `ClientSession::set_compatibility`, `Event::Compatibility`, `windowcast_session_set_compatibility`; the app's per-stream checkbox and host section (with Moonlight's PIN), the viewer's menu item.
+- Compatibility mode (docs/BACKENDS.md, "Third-party clients and RemoteApp"; mytop-project/tracker#457, protocol 16): a window a client streams, or one the host's owner picks, is also offered to third-party clients: an RDP desktop of the window (mstsc, FreeRDP) with a login made for it, a GameStream app for Moonlight (pairing by the PIN typed on the host), and a VNC server with a password made for it. `windowcast_host::compat` (`Compatibility`, `CompatProvider`), `CompatibilityRequest` and `Compatibility`; client-core `ClientSession::set_compatibility`, `Event::Compatibility`, `windowcast_session_set_compatibility`; the app's per-stream checkbox and host section (with Moonlight's PIN), the viewer's menu item.
 - `windowcast-vnc`: RFB 3.8 for one window, VNC Authentication, Raw updates of what changed, DesktopSize, any true-colour pixel format, keys and pointer.
 - `windowcast_gamestream::compat`: the windows in compatibility mode as Moonlight's apps, the server started on first use.
-- `windowcast_host::command::ProcessStarter` (`set_process_starter`, `Started`, `RunningProcess`; the host's own `HostProcesses` by default): how the host starts a client's terminals, commands and launches, so a Windows host running as SYSTEM starts them as the user signed in at the PC (docs/BACKENDS.md, "The secure screen"; Droidtop/tracker#467).
+- `windowcast_host::command::ProcessStarter` (`set_process_starter`, `Started`, `RunningProcess`; the host's own `HostProcesses` by default): how the host starts a client's terminals, commands and launches, so a Windows host running as SYSTEM starts them as the user signed in at the PC (docs/BACKENDS.md, "The secure screen"; mytop-project/tracker#467).
 - `windowcast_agent_windows::user_process`: `UserProcesses`, which starts them with the console user's token (WTSQueryUserToken), environment block and profile folder through CreateProcessAsUserW, and refuses with a plain message when nobody is signed in; `running_as_system`. The agent installs it when it runs as SYSTEM. Terminals go through `windowcast-agent-windows pty-relay` (`relay`), started as the user, which opens the pseudo-terminal and takes typed text and resizes as frames.
 
 ### Fixed
@@ -222,7 +222,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.34.0] - 2026-10-14
 
 ### Changed
-- RemoteApp launches run on the host (docs/BACKENDS.md, "RemoteApp"; Droidtop/tracker#457 step 5, protocol 15): the host logs in to its own Remote Desktop and runs the program, and its windows join the host's window list (`windowcast_rdp::remoteapp_windows`: `RemoteAppWindows`, `WithRemoteApps`), so any client streams them on any carrier, as video (`windowcast_host::video::EncodedPictures`, OpenH264) or RDP pictures, and switches them like any window. `ChannelKind::Launch` carries the client's Windows password for that one login; the host answers `PasswordNeeded` instead of handing out a login (`CommandMessage::RemoteApp` is gone). `RemoteApps::launch` takes the password and runs the program.
+- RemoteApp launches run on the host (docs/BACKENDS.md, "RemoteApp"; mytop-project/tracker#457 step 5, protocol 15): the host logs in to its own Remote Desktop and runs the program, and its windows join the host's window list (`windowcast_rdp::remoteapp_windows`: `RemoteAppWindows`, `WithRemoteApps`), so any client streams them on any carrier, as video (`windowcast_host::video::EncodedPictures`, OpenH264) or RDP pictures, and switches them like any window. `ChannelKind::Launch` carries the client's Windows password for that one login; the host answers `PasswordNeeded` instead of handing out a login (`CommandMessage::RemoteApp` is gone). `RemoteApps::launch` takes the password and runs the program.
 
 ### Removed
 - client-core's own RemoteApp connections (`REMOTE_APP_WINDOW` windows, its RDP login and picture cutting): the host does that now. A client no longer needs to show RDP pictures or be on the host's network for a RemoteApp launch.
@@ -230,19 +230,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.33.0] - 2026-10-14
 
 ### Added
-- A private session (docs/BACKENDS.md, "A private session"; Droidtop/tracker#467, protocol 14): a host option, off by default, under which a client may move the host's programs out of sight of its screen. Windows Pro and up: the host logs in to its own Remote Desktop as its user, which takes the session off the screen (shown the sign-in screen) and keeps it running unlocked; Windows Home is detected and told it has no Remote Desktop. Linux: a headless sway of the agent's own, whose windows the agent serves while the session is on; programs, shells and commands clients start go there. `HostState::private_session`, `PrivateSessionRequest` and `PrivateSessionRefused`; `WindowSource::set_private_session`; client-core `ClientSession::private_session`, `Event::HostState`'s `private_session`, `Event::PrivateSessionRefused`, `windowcast_session_private_session`; the app's host setting and client button, the viewer's menu and password prompt.
+- A private session (docs/BACKENDS.md, "A private session"; mytop-project/tracker#467, protocol 14): a host option, off by default, under which a client may move the host's programs out of sight of its screen. Windows Pro and up: the host logs in to its own Remote Desktop as its user, which takes the session off the screen (shown the sign-in screen) and keeps it running unlocked; Windows Home is detected and told it has no Remote Desktop. Linux: a headless sway of the agent's own, whose windows the agent serves while the session is on; programs, shells and commands clients start go there. `HostState::private_session`, `PrivateSessionRequest` and `PrivateSessionRefused`; `WindowSource::set_private_session`; client-core `ClientSession::private_session`, `Event::HostState`'s `private_session`, `Event::PrivateSessionRefused`, `windowcast_session_private_session`; the app's host setting and client button, the viewer's menu and password prompt.
 
 ## [0.32.0] - 2026-10-14
 
 ### Added
-- The session's pointer (docs/BACKENDS.md, "The session owns the window"; Droidtop/tracker#457 step 4b, protocol 13): `ControlMessage::Cursor` and `CursorShape`, `WindowSource::cursor` and `cursor_image`. Windows hosts capture without the pointer and send it while a window streams. client-core: `Event::Cursor`, `ClientSession::cursor` and `cursor_image`, and `windowcast_session_cursor_image` in C. The Windows client shows the host's pointer shape over its stream windows while it sends input; the viewer draws it over the watched window. `windowcast-testhost --cursor` circles a drawn pointer over its window.
+- The session's pointer (docs/BACKENDS.md, "The session owns the window"; mytop-project/tracker#457 step 4b, protocol 13): `ControlMessage::Cursor` and `CursorShape`, `WindowSource::cursor` and `cursor_image`. Windows hosts capture without the pointer and send it while a window streams. client-core: `Event::Cursor`, `ClientSession::cursor` and `cursor_image`, and `windowcast_session_cursor_image` in C. The Windows client shows the host's pointer shape over its stream windows while it sends input; the viewer draws it over the watched window. `windowcast-testhost --cursor` circles a drawn pointer over its window.
 
 ## [0.31.0] - 2026-10-14
 
 ### Added
-- A locked host keeps streaming (docs/BACKENDS.md, "A locked host"; Droidtop/tracker#467). The host tells clients when it is locked or unlocked: `ControlMessage::HostState` (protocol 12), `WindowSource::host_state`, client-core `Event::HostState { locked }` (`host_state` in the C interface's events). The Windows agent asks Remote Desktop Services; the app and the viewer say "This PC is locked; its windows keep streaming". `windowcast-testhost --locked` says it is locked for the first 30 s of every minute.
+- A locked host keeps streaming (docs/BACKENDS.md, "A locked host"; mytop-project/tracker#467). The host tells clients when it is locked or unlocked: `ControlMessage::HostState` (protocol 12), `WindowSource::host_state`, client-core `Event::HostState { locked }` (`host_state` in the C interface's events). The Windows agent asks Remote Desktop Services; the app and the viewer say "This PC is locked; its windows keep streaming". `windowcast-testhost --locked` says it is locked for the first 30 s of every minute.
 - Input while a Windows host is locked goes to the window as posted messages (SendInput is refused then): pointer moves, buttons and wheel to the child window under the point, keys as WM_KEYDOWN/WM_KEYUP with their scan codes, text as WM_CHAR. Best effort: programs that read raw input or the key state (most games) do not see it.
-- Linux packages (Droidtop/tracker#118): with each release, a portable `.tar.zst`, one runnable `.run` file (uruntime), a `.deb` and an `.rpm` for x86_64 and aarch64 holding `windowcast-agent-linux`, `windowcast-app`, `windowcast-client` and `windowcast-testhost`, with `install.sh` (per user, no root, `--autostart` optional) and `uninstall.sh` (removes exactly what the install manifest lists; `--purge` also deletes the device's data) and `SHA256SUMS-linux`. Built by `.github/workflows/linux-packages.yml` from `packaging/linux`. The systemd user unit `windowcast-agent.service` ships in the packages, not enabled.
+- Linux packages (mytop-project/tracker#118): with each release, a portable `.tar.zst`, one runnable `.run` file (uruntime), a `.deb` and an `.rpm` for x86_64 and aarch64 holding `windowcast-agent-linux`, `windowcast-app`, `windowcast-client` and `windowcast-testhost`, with `install.sh` (per user, no root, `--autostart` optional) and `uninstall.sh` (removes exactly what the install manifest lists; `--purge` also deletes the device's data) and `SHA256SUMS-linux`. Built by `.github/workflows/linux-packages.yml` from `packaging/linux`. The systemd user unit `windowcast-agent.service` ships in the packages, not enabled.
 
 ### Changed
 - The desktop backend serves the window's own capture while the Windows host's screen is locked (a cut of the screen would show the lock screen), and the screen's again once it is unlocked.
@@ -260,7 +260,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   I/O. It covers the hellos, the transcript and each side's proof (an
   identity signature, plus the PIN-derived tag while pairing). Signaling
   uses it, with the transcript bytes unchanged, and droidtop-agent pairs
-  with the same code under its own label (Droidtop/tracker#373).
+  with the same code under its own label (mytop-project/tracker#373).
 - One identity per computer for windowcast and droidtop-agent:
   `windowcast_identity::app_dir` (the reference app's default data folder)
   and `computer_dir` (its `host` folder), and the file names
@@ -289,49 +289,49 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Windows host: the app no longer crashes opening its window (`OleInitialize` failed
   with RPC_E_CHANGED_MODE): the main thread is made single-threaded COM before winit
   starts, and the capture check initialises WinRT on a thread of its own
-  (Droidtop/tracker#464).
+  (mytop-project/tracker#464).
 - Shells on a Windows host show output: the terminal answers the cursor-position,
   status and attribute queries, and ConPTY waits for the cursor position before
-  printing anything (Droidtop/tracker#466).
+  printing anything (mytop-project/tracker#466).
 - A Windows host that is locked refuses streams with "the host computer is locked;
   unlock it to stream its windows" instead of a stream that never shows a picture.
   The viewer shows why a popup (such as Save As) was refused, and a refused switch or
-  popup shows as a toast while a stream is on screen (Droidtop/tracker#467, #471).
+  popup shows as a toast while a stream is on screen (mytop-project/tracker#467, #471).
 - A client in an emulator reaches the host's stream: the host's candidates are also
   tried at the address the client dialled (10.0.2.2 from BlueStacks or the Android
   emulator). When no path comes up, the error says so plainly instead of timing out
-  (Droidtop/tracker#465).
+  (mytop-project/tracker#465).
 
 ## [0.29.0] - 2026-10-10
 
 ### Added
-- Window positions (Droidtop/tracker#457 step 4, protocol 11): `WindowInfo::position` is the window's top-left on the host (Windows hosts and RemoteApp windows; Wayland does not say). The Windows client opens a popup's, menu's or dialog's window borderless and above its owner's stream window, where it is on the host against its owner (`Placement::at`, `owner`; each stream window publishes its `View`); the viewer places a popup's floating window the same way against the watched window.
+- Window positions (mytop-project/tracker#457 step 4, protocol 11): `WindowInfo::position` is the window's top-left on the host (Windows hosts and RemoteApp windows; Wayland does not say). The Windows client opens a popup's, menu's or dialog's window borderless and above its owner's stream window, where it is on the host against its owner (`Placement::at`, `owner`; each stream window publishes its `View`); the viewer places a popup's floating window the same way against the watched window.
 
 ### Fixed
-- Viewer: a carrier switch, by hand or by itself, no longer drops to the connect form ("Stream ended after N pictures"): the replaced carrier's end, which the switch causes, ended the stream now on the new carrier. A renderer's callbacks act only while it is the stream's renderer, a stream that really ends is stopped (renderer and sound), and a surface stops the renderer drawing on it before it is destroyed, so no decoder writes to a surface that is gone (the "SoftwareRenderer dequeueBuffer -19" lines) (Droidtop/tracker#463).
+- Viewer: a carrier switch, by hand or by itself, no longer drops to the connect form ("Stream ended after N pictures"): the replaced carrier's end, which the switch causes, ended the stream now on the new carrier. A renderer's callbacks act only while it is the stream's renderer, a stream that really ends is stopped (renderer and sound), and a surface stops the renderer drawing on it before it is destroyed, so no decoder writes to a surface that is gone (the "SoftwareRenderer dequeueBuffer -19" lines) (mytop-project/tracker#463).
 - `windowcast-testhost --carriers native` offers video only, so a switch to RDP pictures is refused (for trying a refused switch).
 
 ## [0.28.1] - 2026-10-10
 
 ### Fixed
-- Viewer: the menu's "Show as video / Show as RDP pictures" can be opened. The menu was built once, at start, with both items hidden (no stream yet), so no overflow button appeared; it is now rebuilt when a stream starts or stops and when a carrier switch starts, finishes or is given up (Droidtop/tracker#460).
+- Viewer: the menu's "Show as video / Show as RDP pictures" can be opened. The menu was built once, at start, with both items hidden (no stream yet), so no overflow button appeared; it is now rebuilt when a stream starts or stops and when a carrier switch starts, finishes or is given up (mytop-project/tracker#460).
 
 ## [0.28.0] - 2026-10-10
 
 ### Added
-- Carriers switch by themselves (docs/BACKENDS.md, "When a carrier switches"; Droidtop/tracker#457 step 3): the client measures how much each shown window moves (pictures or frames per second) and, with the host's content class, moves a still text window to RDP pictures and a moving one to video, with a 25% margin held 3 s, at most one switch per 15 s per window, and backoff after a failed switch. A user's rule for the app, or a switch by hand, pins the window. On by default: `ClientSession::set_auto_switch`, C `windowcast_session_auto_switch`, Kotlin `autoSwitch`; the Windows app's "Switch between video and RDP by themselves".
+- Carriers switch by themselves (docs/BACKENDS.md, "When a carrier switches"; mytop-project/tracker#457 step 3): the client measures how much each shown window moves (pictures or frames per second) and, with the host's content class, moves a still text window to RDP pictures and a moving one to video, with a 25% margin held 3 s, at most one switch per 15 s per window, and backoff after a failed switch. A user's rule for the app, or a switch by hand, pins the window. On by default: `ClientSession::set_auto_switch`, C `windowcast_session_auto_switch`, Kotlin `autoSwitch`; the Windows app's "Switch between video and RDP by themselves".
 - `RdpStream::pictures`, the count of pictures received.
 
 ## [0.27.0] - 2026-10-10
 
 ### Added
-- Switching a window's carrier without a break, by hand (docs/BACKENDS.md, "One window, any carrier"; Droidtop/tracker#457 step 2): `ClientSession::switch_window` starts the new carrier beside the one on screen, `Event::CarrierStarted` hands it to the app, which swaps to it on its first picture and calls `carrier_shown`; the old carrier then stops. A switch the host refuses, or whose carrier shows nothing within 5 s, is given up (`Event::CarrierRefused`) and the window stays as it was. C: `windowcast_session_switch_window`, `windowcast_session_carrier_shown`; Kotlin `switchWindow`, `carrierShown`.
+- Switching a window's carrier without a break, by hand (docs/BACKENDS.md, "One window, any carrier"; mytop-project/tracker#457 step 2): `ClientSession::switch_window` starts the new carrier beside the one on screen, `Event::CarrierStarted` hands it to the app, which swaps to it on its first picture and calls `carrier_shown`; the old carrier then stops. A switch the host refuses, or whose carrier shows nothing within 5 s, is given up (`Event::CarrierRefused`) and the window stays as it was. C: `windowcast_session_switch_window`, `windowcast_session_carrier_shown`; Kotlin `switchWindow`, `carrierShown`.
 - The Windows client shows video and RDP pictures through one presenter and swaps carriers in one present; the app's Streams panel has "Switch to video / RDP pictures". The Android viewer shows the new carrier on a second surface and swaps on its first picture; its menu has "Show as video / Show as RDP pictures".
 
 ## [0.26.0] - 2026-10-10
 
 ### Added
-- Protocol 10, carrier generations (docs/BACKENDS.md, "One window, any carrier"; Droidtop/tracker#457): a window's stream may run on several carriers at once while it switches. `StreamStartRequest` and `StreamStartResponse` name a `generation`; `CarrierStop` stops one carrier; the host sends `StreamStopped` once when the stream ends, and the transport `TrackEnded` when a window's video track ends.
+- Protocol 10, carrier generations (docs/BACKENDS.md, "One window, any carrier"; mytop-project/tracker#457): a window's stream may run on several carriers at once while it switches. `StreamStartRequest` and `StreamStartResponse` name a `generation`; `CarrierStop` stops one carrier; the host sends `StreamStopped` once when the stream ends, and the transport `TrackEnded` when a window's video track ends.
 
 ### Changed
 - Input always goes over the session, whatever carries the window: a window streamed over RDP no longer takes its input over the RDP connection, and the RDP server a stream is handed to takes no RDP input (the session's input rules cover every carrier). An account that may not drive windows is no longer moved off RDP for it.
@@ -350,7 +350,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.24.1] - 2026-10-10
 
 ### Changed
-- Launches run in the user's own session on the host's desktop by default, on every system: Windows RemoteApp launches (a session of their own, which Windows licenses) are now opt-in, off on every Windows edition until the host's owner turns them on (docs/BACKENDS.md, "RemoteApp"; Droidtop/tracker#111). The Windows app saves the setting under a new name, so the "automatic" that 0.24.0 saved by default is not read back.
+- Launches run in the user's own session on the host's desktop by default, on every system: Windows RemoteApp launches (a session of their own, which Windows licenses) are now opt-in, off on every Windows edition until the host's owner turns them on (docs/BACKENDS.md, "RemoteApp"; mytop-project/tracker#111). The Windows app saves the setting under a new name, so the "automatic" that 0.24.0 saved by default is not read back.
 
 ## [0.24.0] - 2026-10-10
 
@@ -360,14 +360,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `RdpStream::windows`, `picture_after`, `input_to` and `exec_result`, and `RgbaPicture::cut`: a RemoteApp connection gives the session's whole desktop and the windows on it (with their menus) instead of cutting out one window.
 
 ### Fixed
-- The viewer reports the release it belongs to: its versionName is the workspace version and its versionCode major * 10000 + minor * 100 + patch, instead of 0.6.0 and 2 (Droidtop/tracker#456).
+- The viewer reports the release it belongs to: its versionName is the workspace version and its versionCode major * 10000 + minor * 100 + patch, instead of 0.6.0 and 2 (mytop-project/tracker#456).
 
 ## [0.23.3] - 2026-10-10
 
 ### Fixed
-- `windowcast-testhost`: input reaches the test pattern through `--content` (`WithContent`), the tone and the microphone wrappers, which dropped every event; the test pattern prints each event it gets (Droidtop/tracker#450).
-- A client given a PIN for a host that already paired it resumes with its device key first and uses the PIN only when the host does not know it, instead of being refused with "pairing is not open" (Droidtop/tracker#453). A forgotten device's resume attempt does not count toward the host's PIN lockout (refused as an unknown peer, not a failed authentication).
-- Viewer: the session and shell survive a screen size, density or rotation change; the stream's title is cleared after Back; a browser sign-in can be cancelled and times out after 2 minutes (Droidtop/tracker#451, #452, #454).
+- `windowcast-testhost`: input reaches the test pattern through `--content` (`WithContent`), the tone and the microphone wrappers, which dropped every event; the test pattern prints each event it gets (mytop-project/tracker#450).
+- A client given a PIN for a host that already paired it resumes with its device key first and uses the PIN only when the host does not know it, instead of being refused with "pairing is not open" (mytop-project/tracker#453). A forgotten device's resume attempt does not count toward the host's PIN lockout (refused as an unknown peer, not a failed authentication).
+- Viewer: the session and shell survive a screen size, density or rotation change; the stream's title is cleared after Back; a browser sign-in can be cancelled and times out after 2 minutes (mytop-project/tracker#451, #452, #454).
 
 ## [0.23.2] - 2026-10-10
 
@@ -377,12 +377,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.23.1] - 2026-10-10
 
 ### Added
-- `windowcast-testhost --content text` (or `game`, `video`, `general`) sets its window's content hint, so the default rules can pick RDP for it (`WithContent`; Droidtop/tracker#449).
+- `windowcast-testhost --content text` (or `game`, `video`, `general`) sets its window's content hint, so the default rules can pick RDP for it (`WithContent`; mytop-project/tracker#449).
 - The viewer's debug APKs are signed with one committed key, `android/viewer/debug.keystore`, so a new debug build installs over the last. It identifies debug builds only; release builds keep their own signing. Debug installs of 0.22.0 or 0.23.0 need one uninstall first.
 
 ### Fixed
-- Android library: no native call runs under a lock the UI needs, and a handle is freed only after the last call on it returns (`NativeHandle`): terminal input no longer waits behind `terminalWait` (ANRs), and closing a session during `nextEvent` no longer crashes (Droidtop/tracker#446, #447). The library's unit tests run in CI.
-- Viewer: Connect again stops the old event thread before closing its session; the window list scrolls and shows several rows, refreshes after "Start on the host", and marks windows it cannot capture; the status line resets after Back (Droidtop/tracker#447, #448).
+- Android library: no native call runs under a lock the UI needs, and a handle is freed only after the last call on it returns (`NativeHandle`): terminal input no longer waits behind `terminalWait` (ANRs), and closing a session during `nextEvent` no longer crashes (mytop-project/tracker#446, #447). The library's unit tests run in CI.
+- Viewer: Connect again stops the old event thread before closing its session; the window list scrolls and shows several rows, refreshes after "Start on the host", and marks windows it cannot capture; the status line resets after Back (mytop-project/tracker#447, #448).
 
 ## [0.23.0] - 2026-10-10
 
@@ -410,7 +410,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.21.0] - 2026-10-09
 
 ### Added
-- Account sign-in beside PIN pairing (Droidtop/tracker#443, docs/ACCOUNTS.md), in the new `windowcast-accounts` crate: a client signs in once and the host registers its device key to the account; later connections resume with the key while the registration lasts (30 days by default). Sign-in methods: the host's own accounts (Argon2id), the host OS's accounts (PAM on Linux, `LogonUserW` on Windows), LDAP and Active Directory (bind template or search then bind, groups from `memberOf` or a group search), OpenID Connect (authorization code with PKCE through a loopback redirect, or the device code flow; ID tokens checked against the provider's keys, bound to the device by their nonce, used once; SAML through an OIDC broker), and Kerberos with the user's tickets (GSS-API on Linux, SSPI on Windows). The credential crosses sealed with HPKE to a host key the client already trusts or the user confirmed by its fingerprint. A per-host policy decides who connects, which windows they see and stream, and whether they send input or use commands. A host with an SSH CA key signs short-lived SSH user certificates for signed-in accounts. Protocol version 6.
+- Account sign-in beside PIN pairing (mytop-project/tracker#443, docs/ACCOUNTS.md), in the new `windowcast-accounts` crate: a client signs in once and the host registers its device key to the account; later connections resume with the key while the registration lasts (30 days by default). Sign-in methods: the host's own accounts (Argon2id), the host OS's accounts (PAM on Linux, `LogonUserW` on Windows), LDAP and Active Directory (bind template or search then bind, groups from `memberOf` or a group search), OpenID Connect (authorization code with PKCE through a loopback redirect, or the device code flow; ID tokens checked against the provider's keys, bound to the device by their nonce, used once; SAML through an OIDC broker), and Kerberos with the user's tickets (GSS-API on Linux, SSPI on Windows). The credential crosses sealed with HPKE to a host key the client already trusts or the user confirmed by its fingerprint. A per-host policy decides who connects, which windows they see and stream, and whether they send input or use commands. A host with an SSH CA key signs short-lived SSH user certificates for signed-in accounts. Protocol version 6.
 - client-core: `Client::sign_in_options`, `Client::connect_account`, `Client::oidc_browser`, `Client::oidc_device`, `ClientSession::request_ssh_certificate`, and their C functions. The reference app signs in on the client (password, a provider in the browser, Kerberos) and keeps accounts and registered devices on the host.
 
 ### Changed
@@ -421,7 +421,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.20.0] - 2026-10-09
 
 ### Added
-- RDP (Droidtop/tracker#111), on IronRDP's protocol crates (Devolutions, MIT or Apache-2.0; listed in the new `NOTICE`), as the owner decided: crates may carry a protocol, never an external program. The new `windowcast-rdp` crate serves one window of a host over RDP, so any RDP client shows that window and types into it (the desktop is the window; TLS with a certificate made per host, NLA with a login the host sets; RemoteFX or plain bitmaps as the client supports; keys and pointer to the window through the host's own input delivery), and is a client for RDP hosts, windowcast's or Windows' own Remote Desktop, with the picture as RGBA and windowcast's input as RDP input. `windowcast-rdp connect HOST USER` and `windowcast-rdp serve` try it. Tested in CI: our client against our host (the pattern moves, keys and pointer arrive, a wrong password is refused), stock FreeRDP (`wlfreerdp3`) against our host, and our client logging in to a Windows runner's own Remote Desktop.
+- RDP (mytop-project/tracker#111), on IronRDP's protocol crates (Devolutions, MIT or Apache-2.0; listed in the new `NOTICE`), as the owner decided: crates may carry a protocol, never an external program. The new `windowcast-rdp` crate serves one window of a host over RDP, so any RDP client shows that window and types into it (the desktop is the window; TLS with a certificate made per host, NLA with a login the host sets; RemoteFX or plain bitmaps as the client supports; keys and pointer to the window through the host's own input delivery), and is a client for RDP hosts, windowcast's or Windows' own Remote Desktop, with the picture as RGBA and windowcast's input as RDP input. `windowcast-rdp connect HOST USER` and `windowcast-rdp serve` try it. Tested in CI: our client against our host (the pattern moves, keys and pointer arrive, a wrong password is refused), stock FreeRDP (`wlfreerdp3`) against our host, and our client logging in to a Windows runner's own Remote Desktop.
 - RemoteApp in our RDP client, not yet working end to end (`ClientConfig::remote_app`, `windowcast-rdp connect ... --app PROGRAM`): the client asks for RemoteApp and runs the `rail` channel, and is meant to show only the program's window, cut from the session's picture by the window orders the server sends. IronRDP has no option for this yet, so `rdp::remoteapp` adds INFO_RAIL and the Remote Programs and Window List capability sets to the two PDUs IronRDP writes, sends the rail PDUs with the client's own MCS ID (IronRDP's channel replies carry the server's), reads window orders fast-path and slow-path, and skips slow-path PDUs IronRDP cannot read; `docs/upstream/ironrdp-remoteapp.md` drafts the upstream change. Against a Windows Server runner the server takes the RemoteApp session and sends its rail handshake in some runs, but no window has appeared yet (it logs the session off), so the CI test is off until that is solved.
 - Hosts can hand out a window's raw pictures (`WindowSource::open_pictures`), for backends that encode their own way; the Linux and Windows agents do (Windows reads them back as BGRA), sending a picture when the window changes and once a second regardless.
 - RDP as a session backend: a window the client's rules send to RDP is handed to an RDP server started for that one stream (`rdp::host::WithRdp`, in the app, the agents and the test host; the app's "Offer windows over RDP" setting, on by default), with a one-time login and the host's certificate fingerprint passed over the paired session (`HandoffTarget`, protocol version 6). client-core logs in, gives the window's pictures as RGBA (`ClientSession::next_picture`, `windowcast_session_next_picture`) and sends that window's input over RDP. A client asks for RDP only once it says it shows pictures (`accept_pictures`, `windowcast_session_accept_pictures`), and never away from the LAN. The Android viewer shows RDP windows (`WindowPictures`, drawing each picture onto the surface). Tested end to end in CI (`cli-tools/tests/rdp_backend.rs`).
@@ -447,7 +447,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.17.0] - 2026-10-09
 
 ### Added
-- Stock Moonlight streams from a windowcast host (Droidtop/tracker#110): our own GameStream host answers `/launch`, sets the stream up over RTSP (Sunshine's attributes, ping payloads and connect data), sends the window as H.264 GameStream video packets to the address the client pings from, and keeps the AES-GCM-encrypted ENet control stream (keyframe requests, the end of the stream). The host's windows are the apps Moonlight lists. Tested in CI: Arch's moonlight-qt 6.2.0 pairs, lists and streams the test pattern window, decoding 30 fps with no frames lost.
+- Stock Moonlight streams from a windowcast host (mytop-project/tracker#110): our own GameStream host answers `/launch`, sets the stream up over RTSP (Sunshine's attributes, ping payloads and connect data), sends the window as H.264 GameStream video packets to the address the client pings from, and keeps the AES-GCM-encrypted ENet control stream (keyframe requests, the end of the stream). The host's windows are the apps Moonlight lists. Tested in CI: Arch's moonlight-qt 6.2.0 pairs, lists and streams the test pattern window, decoding 30 fps with no frames lost.
 - Our own GameStream client streams too: it sets the stream up over RTSP, pings, reassembles the video packets into frames and keeps the control stream (`windowcast-gamestream stream HOST APP_ID`). In CI it decodes 30 of 30 frames from a windowcast host.
 - Input over GameStream, both ends: the host reads Moonlight's input packets (keys as Windows virtual keys, absolute and relative mouse, buttons, both scroll axes, text, touch and pen, and up to four controllers, unplugged when the client drops them) and hands them to the streamed window and the host's virtual gamepads through the same input delivery a windowcast session uses; our client writes the same packets. The host now offers touch and pen to Moonlight.
 
@@ -458,7 +458,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.16.0] - 2026-10-09
 
 ### Added
-- GameStream, our own implementation (Droidtop/tracker#110), first piece: pairing at both ends, a client for Sunshine and Apollo hosts (server info, pairing, app list, launch, quit), and a host face that stock Moonlight pairs with and lists apps from (`windowcast-gamestream`). Streaming over GameStream comes next.
+- GameStream, our own implementation (mytop-project/tracker#110), first piece: pairing at both ends, a client for Sunshine and Apollo hosts (server info, pairing, app list, launch, quit), and a host face that stock Moonlight pairs with and lists apps from (`windowcast-gamestream`). Streaming over GameStream comes next.
 
 ### Removed
 - `windowcast-apollo`, the Sunshine `serverinfo` and app-list reader: `windowcast-gamestream`'s client does both, with pairing.
@@ -467,7 +467,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.15.0] - 2026-10-09
 
 ### Added
-- Away from the LAN (Droidtop/tracker#113): a host can be reachable by the clients it trusts from anywhere ("Reachable away from home", off by default; UDP 47101). Both sides find each other the way Syncthing's devices do, with the code droidtop-agent uses, now shared as the `windowcast-rendezvous` crate: STUN for the address the NAT gives the rendezvous socket, Syncthing's global discovery for announcing and looking it up, and hole punching. Signaling runs over a small reliable stream on the punched socket (`transport::punched`) and the session crosses the NATs with ICE (`Session::away`). Only addresses go to discovery and STUN; nothing is ever relayed. The two sides learn each other's discovery IDs on a trusted session (`ControlMessage::Rendezvous`); a client then looks for a paired host away when it does not answer on the LAN (the reference app, `Client::connect_away`, `windowcast_connect_away`). A host takes no pairing from away.
+- Away from the LAN (mytop-project/tracker#113): a host can be reachable by the clients it trusts from anywhere ("Reachable away from home", off by default; UDP 47101). Both sides find each other the way Syncthing's devices do, with the code droidtop-agent uses, now shared as the `windowcast-rendezvous` crate: STUN for the address the NAT gives the rendezvous socket, Syncthing's global discovery for announcing and looking it up, and hole punching. Signaling runs over a small reliable stream on the punched socket (`transport::punched`) and the session crosses the NATs with ICE (`Session::away`). Only addresses go to discovery and STUN; nothing is ever relayed. The two sides learn each other's discovery IDs on a trusted session (`ControlMessage::Rendezvous`); a client then looks for a paired host away when it does not answer on the LAN (the reference app, `Client::connect_away`, `windowcast_connect_away`). A host takes no pairing from away.
 
 ### Removed
 - The TURN relay wiring (`RelayConfig`, `Session::with_relay`): windowcast never sends a session through a relay.
@@ -475,7 +475,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.14.0] - 2026-10-09
 
 ### Added
-- Adaptive quality (Droidtop/tracker#114): the host holds each stream's encoder to what the network carries, cutting the bitrate on packet loss (the client's RTCP receiver reports) or a growing round trip (the host now pings the client too, and clients answer), and growing it back on a clean network until the settings rule again; when the rate is thin for the picture it lowers the frame rate to 30, then the picture to three quarters and half size, then 20 and 15 fps, and climbs back in reverse. Encoders change bitrate mid-stream where they can (NVENC, OpenH264; others are reopened), and the picture is scaled on the GPU (Windows) or by a box filter (Linux, read-back pictures).
+- Adaptive quality (mytop-project/tracker#114): the host holds each stream's encoder to what the network carries, cutting the bitrate on packet loss (the client's RTCP receiver reports) or a growing round trip (the host now pings the client too, and clients answer), and growing it back on a clean network until the settings rule again; when the rate is thin for the picture it lowers the frame rate to 30, then the picture to three quarters and half size, then 20 and 15 fps, and climbs back in reverse. Encoders change bitrate mid-stream where they can (NVENC, OpenH264; others are reopened), and the picture is scaled on the GPU (Windows) or by a box filter (Linux, read-back pictures).
 - Per-stream ceilings from the client (`StreamOptions::limits`, `ControlMessage::StreamLimits`, `set_stream_limits` and `windowcast_session_set_stream_limits`): bitrate, frame rate and height, which the host never goes above. The reference app keeps them per app and shows each stream's quality, loss and round trip on both sides; the host reports them as `StreamQuality` (`stream_quality` events).
 - `windowcast-testhost --microphone-level`: takes a client's microphone and prints its level once a second, keeping nothing.
 

@@ -55,7 +55,7 @@ pub fn init_thread() {
 /// Whether this Windows has Windows.Graphics.Capture. Asked on a thread
 /// of its own, so the caller's COM apartment is left as it is (the app's
 /// main thread is the window's, in OLE's single-threaded one,
-/// Droidtop/tracker#464).
+/// mytop-project/tracker#464).
 pub fn supported() -> bool {
     std::thread::spawn(|| {
         init_thread();

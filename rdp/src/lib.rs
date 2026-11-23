@@ -1,4 +1,4 @@
-//! RDP for windowcast (Droidtop/tracker#111), on IronRDP's protocol crates
+//! RDP for windowcast (mytop-project/tracker#111), on IronRDP's protocol crates
 //! (see NOTICE): IronRDP speaks RDP (the connection sequence, TLS,
 //! CredSSP/NLA, the bitmap codecs, the channels); this crate decides what
 //! an RDP connection shows and where its input goes.

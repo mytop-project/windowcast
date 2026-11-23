@@ -1,5 +1,5 @@
 //! Switching a window's carrier without a break (docs/BACKENDS.md, "One
-//! window, any carrier"; Droidtop/tracker#457): the test pattern streams as
+//! window, any carrier"; mytop-project/tracker#457): the test pattern streams as
 //! video, switches to RDP pictures and back to video, each new carrier
 //! coming up beside the old one and replacing it once shown, the window's
 //! stream never ending; a switch the host cannot make is refused and the

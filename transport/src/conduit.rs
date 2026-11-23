@@ -1,4 +1,4 @@
-//! A session carried by a tunnel someone else owns (Droidtop/tracker#113).
+//! A session carried by a tunnel someone else owns (mytop-project/tracker#113).
 //!
 //! droidtop-agent already keeps one tunnel between a handheld and a
 //! computer (userspace WireGuard), and the owner's rule is that it is also

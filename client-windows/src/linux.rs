@@ -1,4 +1,4 @@
-//! The Linux stream window (Droidtop/tracker#615): each streamed window as a
+//! The Linux stream window (mytop-project/tracker#615): each streamed window as a
 //! top-level Wayland window of its own, so in droidtop's Linux container (or
 //! any Wayland desktop) it moves, resizes and closes like any window. This is
 //! the reference app's client role on Linux, the counterpart of the Windows

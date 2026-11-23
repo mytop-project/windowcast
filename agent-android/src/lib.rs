@@ -1,4 +1,4 @@
-//! windowcast's Android host (Droidtop/tracker#615): each app on a virtual
+//! windowcast's Android host (mytop-project/tracker#615): each app on a virtual
 //! display of its own, drawn straight into a MediaCodec encoder's input
 //! surface, and served by windowcast's host as one window per app.
 //!

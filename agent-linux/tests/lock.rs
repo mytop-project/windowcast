@@ -1,5 +1,5 @@
 //! A locked sway session keeps streaming its windows (docs/BACKENDS.md, "A
-//! locked host"; Droidtop/tracker#467): the test window, which draws every
+//! locked host"; mytop-project/tracker#467): the test window, which draws every
 //! frame, is captured on its own and cut out of its output, then swaylock
 //! locks the session (ext-session-lock-v1). The window's own capture keeps
 //! showing the window, one started while locked too; the output shows the

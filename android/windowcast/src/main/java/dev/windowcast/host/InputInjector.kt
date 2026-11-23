@@ -12,7 +12,7 @@ import dev.windowcast.Keys
 import org.json.JSONObject
 
 /**
- * Puts a client's input into one app's display (Droidtop/tracker#615): pointer, wheel, touch,
+ * Puts a client's input into one app's display (mytop-project/tracker#615): pointer, wheel, touch,
  * keys and text, as the shell user may inject them. `InputManager.injectInputEvent` and
  * `InputEvent.setDisplayId` are hidden APIs that shell holds the permission for (scrcpy injects
  * the same way). Coordinates arrive as fractions of the window, which is the display. One per

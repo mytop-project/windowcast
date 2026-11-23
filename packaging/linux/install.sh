@@ -7,7 +7,7 @@
 # alone (it then fetches the tarball for this machine from the latest release
 # and checks it against the release's SHA256SUMS-linux):
 #
-#   curl -fsSL https://github.com/Droidtop/windowcast/releases/latest/download/install.sh | sh
+#   curl -fsSL https://github.com/mytop-project/windowcast/releases/latest/download/install.sh | sh
 #   curl -fsSL .../install.sh | sh -s -- --autostart
 #
 # Everything it creates is listed in ~/.local/share/windowcast/install-manifest,
@@ -16,7 +16,7 @@ set -eu
 
 # ---- this project ---------------------------------------------------------
 NAME=windowcast
-REPO=Droidtop/windowcast
+REPO=mytop-project/windowcast
 BINS="windowcast-agent-linux windowcast-app windowcast-client windowcast-testhost"
 DESKTOP_ID=windowcast
 SUMS=SHA256SUMS-linux

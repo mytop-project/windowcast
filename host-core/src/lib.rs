@@ -604,7 +604,7 @@ impl HostControl {
     /// The account a device acts for: its registration, while sign-in is
     /// on and the account still exists. `None` for a PIN-paired device (or
     /// one whose account is gone). The command stream's authorizer
-    /// (Droidtop/tracker#444) asks this for a session's peer.
+    /// (mytop-project/tracker#444) asks this for a session's peer.
     pub fn account_of(&self, peer: &PeerId) -> Option<Account> {
         let accounts = self.accounts()?;
         let account = self
@@ -637,7 +637,7 @@ impl HostControl {
     }
 
     /// Limits the device `peer` to the windows `globs` match (app id or
-    /// title), on top of the policy (Droidtop/tracker#116): a host
+    /// title), on top of the policy (mytop-project/tracker#116): a host
     /// application lets a handheld see only the game it started. Empty
     /// takes the limit away. Sessions that start after it use it.
     pub fn limit_device(&self, peer: PeerId, globs: Vec<String>) {
@@ -827,7 +827,7 @@ impl HostControl {
     }
 
     /// Starts (`Some(name)`) or stops (`None`) announcing this host on the local network, so a
-    /// client on the same network can list it (windowcast-discovery, Droidtop/tracker#113). Off
+    /// client on the same network can list it (windowcast-discovery, mytop-project/tracker#113). Off
     /// until the application turns it on: a host that is not asked says nothing. The beacon
     /// carries the name, the device id and the port, and is only a hint; clients still pair and
     /// resume by identity.
@@ -905,7 +905,7 @@ pub async fn serve(
 }
 
 /// Serves one client over a signaling stream another program carries, with
-/// the session's datagrams through `conduit` (Droidtop/tracker#113): droidtop-
+/// the session's datagrams through `conduit` (mytop-project/tracker#113): droidtop-
 /// agent's WireGuard tunnel, its side link for the signaling and its datagrams
 /// for the media, so the agent's tunnel is also the streaming tunnel. Only a
 /// client the host already trusts gets in: no PIN pairing over it. Ends when
@@ -2786,7 +2786,7 @@ mod limit_on_start_tests {
     }
 
     /// Starting a stream honours a device's limit, not only listing
-    /// (Droidtop/tracker#116): with the policy open, the device's own limit
+    /// (mytop-project/tracker#116): with the policy open, the device's own limit
     /// still refuses a window outside it.
     #[tokio::test(flavor = "multi_thread")]
     async fn a_device_limit_refuses_a_stream_outside_it() {
@@ -2844,7 +2844,7 @@ mod serve_over_tests {
     }
 
     /// A session over a stream and a conduit another program carries
-    /// (Droidtop/tracker#113): a trusted client gets in and is answered; an
+    /// (mytop-project/tracker#113): a trusted client gets in and is answered; an
     /// unknown one is refused, since there is no PIN pairing over it.
     #[tokio::test(flavor = "multi_thread")]
     async fn a_trusted_client_is_served_over_a_carried_stream_and_conduit() {

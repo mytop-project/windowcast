@@ -324,7 +324,7 @@ where
         .await?;
     session.add_dialed_candidates(&answer).await?;
     // Signaling is done; what is left is the network path. Running out of
-    // time here is that, said plainly (Droidtop/tracker#465).
+    // time here is that, said plainly (mytop-project/tracker#465).
     tokio::time::timeout(MEDIA_PATH_TIMEOUT, session.wait_control_open())
         .await
         .map_err(|_| TransportError::NoMediaPath)??;

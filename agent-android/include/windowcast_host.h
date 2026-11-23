@@ -1,4 +1,4 @@
-/* windowcast's Android host (Droidtop/tracker#615): the C interface of
+/* windowcast's Android host (mytop-project/tracker#615): the C interface of
  * libwindowcast_host_android.so, which the Android library's
  * dev.windowcast.host.AndroidHost calls through its JNI bridge. The Android
  * side owns the virtual displays and the MediaCodec encoders; it hands frames

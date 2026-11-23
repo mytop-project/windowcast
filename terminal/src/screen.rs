@@ -29,7 +29,7 @@ impl vt100::Callbacks for Callbacks {
     /// the terminal's status (CSI 5 n) and its attributes (CSI c). Windows'
     /// ConPTY asks for the cursor position before it shows anything
     /// (portable-pty creates it with PSEUDOCONSOLE_INHERIT_CURSOR), so a
-    /// terminal that never answers stays blank (Droidtop/tracker#466).
+    /// terminal that never answers stays blank (mytop-project/tracker#466).
     fn unhandled_csi(
         &mut self,
         screen: &mut vt100::Screen,

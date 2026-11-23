@@ -1,9 +1,9 @@
 name: Viewer release
 
 # The Android viewer (dev.windowcast.viewer) as a signed APK on each windowcast
-# release, so droidtop can offer it (Droidtop/tracker#552), and the Android
+# release, so droidtop can offer it (mytop-project/tracker#552), and the Android
 # library (windowcast-android-<version>.aar) that droidtop embeds
-# (Droidtop/tracker#428), each with its own checksum file. Signed with the key
+# (mytop-project/tracker#428), each with its own checksum file. Signed with the key
 # in this repository's secrets, under the names droidtop's releases use
 # (SIGNING_KEYSTORE_BASE64, SIGNING_STORE_PASSWORD, SIGNING_KEY_ALIAS,
 # SIGNING_KEY_PASSWORD): one key for every release, so each installs over the

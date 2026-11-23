@@ -1,6 +1,6 @@
 [package]
 name = "windowcast-bud"
-description = "Direct: windowcast's own low-latency datagram transport (Droidtop/tracker#441), built from the public design of Parsec's BUD between our own peers. This crate is the packet layer: header, encryption, replay window and handshake. No sockets."
+description = "Direct: windowcast's own low-latency datagram transport (mytop-project/tracker#441), built from the public design of Parsec's BUD between our own peers. This crate is the packet layer: header, encryption, replay window and handshake. No sockets."
 version.workspace = true
 edition.workspace = true
 license.workspace = true

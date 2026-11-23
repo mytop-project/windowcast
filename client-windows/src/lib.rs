@@ -15,7 +15,7 @@
 //! - `cursor`: the host's pointer shape, shown as the stream window's own
 //!   pointer while input goes to the host.
 //!
-//! On Linux, `linux` is the same end for a Wayland desktop (Droidtop/tracker#615):
+//! On Linux, `linux` is the same end for a Wayland desktop (mytop-project/tracker#615):
 //! a top-level window per stream, OpenH264 decoding into `wl_shm` buffers,
 //! pointer and keys to the host. The reference app's client role uses it as
 //! it uses the Windows window.

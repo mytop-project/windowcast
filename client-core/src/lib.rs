@@ -54,7 +54,7 @@ use windowcast_transport::{
 /// for), so a slow decoder skips ahead instead of falling further behind.
 const FRAME_QUEUE: usize = 8;
 
-/// A host heard on the local network (Droidtop/tracker#113). Only a hint of where to connect: it
+/// A host heard on the local network (mytop-project/tracker#113). Only a hint of where to connect: it
 /// is not trusted until the connection proves the identity `device_id` names, and a host is
 /// paired or resumed exactly as if its address had been typed.
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -340,7 +340,7 @@ impl Client {
     }
 
     /// Connects over a signaling stream another program carries, with the
-    /// session's datagrams through `conduit` (Droidtop/tracker#113):
+    /// session's datagrams through `conduit` (mytop-project/tracker#113):
     /// droidtop-agent's WireGuard tunnel, its side link and its datagrams.
     /// Only a host this client already trusts: no PIN over it. Backends with
     /// their own connection (RDP) are not offered, as away from the LAN.
@@ -1013,7 +1013,7 @@ pub struct ClientSession {
     selection: Mutex<(HashMap<WindowId, selector::Window>, Option<Instant>)>,
     /// Frames each window's video has handed out, for the selector.
     frames_seen: Mutex<HashMap<WindowId, u64>>,
-    /// The windows being recorded here (Droidtop/tracker#429).
+    /// The windows being recorded here (mytop-project/tracker#429).
     recordings: Mutex<HashMap<WindowId, recording::Recording>>,
 }
 
@@ -1636,7 +1636,7 @@ impl ClientSession {
         }
     }
 
-    /// Starts recording `window` into `path` (Droidtop/tracker#429): the
+    /// Starts recording `window` into `path` (mytop-project/tracker#429): the
     /// frames and sound this session hands out from now on are also written
     /// there as received, from the next keyframe. `width` and `height` are
     /// the window's, as listed. A window already recorded keeps its

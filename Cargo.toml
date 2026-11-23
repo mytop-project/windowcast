@@ -31,7 +31,7 @@ members = [
 version = "0.39.0"
 edition = "2021"
 license = "GPL-3.0-only"
-repository = "https://github.com/Droidtop/windowcast"
+repository = "https://github.com/mytop-project/windowcast"
 
 [workspace.dependencies]
 serde = { version = "1", features = ["derive"] }

@@ -1,7 +1,7 @@
 //! `Direct`: windowcast's own low-latency datagram transport, built from the
 //! public design of Parsec's BUD between our own peers, with windowcast's
 //! identity and standard crypto and none of Parsec's keys, servers or accounts
-//! (Droidtop/tracker#441, docs/research/parsec.md).
+//! (mytop-project/tracker#441, docs/research/parsec.md).
 //!
 //! This crate is the packet layer only, with no sockets and no clock:
 //!
